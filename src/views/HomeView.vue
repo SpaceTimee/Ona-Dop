@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
+import DomainResolve from '@/components/home-view-components/DomainResolve.vue';
 </script>
 
 <template>
   <main>
-    <TheWelcome />
+    <DomainResolve />
   </main>
 </template>

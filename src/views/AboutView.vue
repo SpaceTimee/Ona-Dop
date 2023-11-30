@@ -1,43 +1,41 @@
 <script setup lang="ts">
-import axios from 'axios';
-import { reactive, ref } from 'vue';
-let domain = ref('');
-let ips:Array<any> = reactive([]);
-
-function domainResolve() {
-  axios({
-    url: `https://dns.alidns.com/resolve?name=${domain.value}`
-  })
-    .then((response) => {
-      ips.length = 0;
-      for (const answer of response.data.Answer)
-        ips.unshift(answer.data);
-    })
-    .catch((error) => {
-      console.log(error);
-    })
-    .finally(() => {
-      console.log('finally');
-    });
-}
 </script>
 
 <template>
-  <div class="about">
-    <input v-model="domain" />
-    <button @click="domainResolve" />
+  <main>
+    <h1 class="AboutHeader">Ona Dop</h1>
     <ul>
-        <li v-for="ip in ips" :key="ip">{{ ip }}</li>
+      <li>
+        <p>Developer: Space Time</p>
+      </li>
+      <li>
+        <p>Blog: <a href="https://blog.spacetimee.xyz" target="_blank"
+            rel="noopener noreferrer">https://blog.spacetimee.xyz</a></p>
+      </li>
+      <li>
+        <p>Version: 0.0.0 (Demo)</p>
+      </li>
     </ul>
-  </div>
+  </main>
 </template>
 
 <style>
+.AboutHeader {
+  padding: 0.6rem;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 6px;
+  background-color: #00BD7E;
+  color: white;
+}
+
 @media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
+  .AboutHeader {
+    text-align: center;
   }
+}
+
+p {
+  margin-top: 0.6rem;
 }
 </style>
