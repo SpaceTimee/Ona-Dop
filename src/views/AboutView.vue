@@ -3,7 +3,7 @@
 
 <template>
   <main>
-    <h1 class="AboutHeader">Ona Dop</h1>
+    <h2 class="about-header">Ona Dop</h2>
     <ul>
       <li>
         <p>Developer: Space Time</p>
@@ -19,23 +19,18 @@
   </main>
 </template>
 
-<style>
-.AboutHeader {
+<style scoped>
+.about-header {
   padding: 0.6rem;
-  margin-bottom: 1rem;
+  margin: 1rem;
   border: none;
   border-radius: 6px;
   background-color: #00BD7E;
   color: white;
+  text-align: center;
 }
 
-@media (min-width: 1024px) {
-  .AboutHeader {
-    text-align: center;
-  }
-}
-
-p {
+li {
   margin-top: 0.6rem;
 }
 </style>

@@ -30,23 +30,33 @@ function domainResolve() {
 
 <style scoped>
 .search-container {
-  text-align: center;
+  display: flex;
+  padding: 0.6rem;
+  margin: 1rem;
+  border: none;
+  border-radius: 6px;
+  background-color: #00BD7E;
+  color: white;
 }
 
 .search-box {
   padding: 0.6rem;
   border: 1px solid #ccc;
   border-radius: 6px;
-  width: 200px;
+  flex: 1;
 }
 
 .search-button {
   padding: 0.6rem;
-  margin-left: 0.3rem;
+  margin-left: 0.6rem;
   background-color: #00BD7E;
   color: #fff;
-  border: none;
+  border: 1px solid white;
   border-radius: 6px;
   cursor: pointer;
+}
+
+li {
+  margin-top: 0.6rem;
 }
 </style>
