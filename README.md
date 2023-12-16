@@ -1,68 +1,35 @@
-# Ona Dop
+<h1 align="center">Ona ◁ Dop</h1>
+<h3 align="center">- Just resolve it -</h3>
+</br>
 
-This template should help get you started developing with Vue 3 in Vite.
+## 自我介绍
+**Ona Dop**: 一只基于 **Vue3(SPA)** 的在线 DNS 解析工具
 
-## Recommended IDE Setup
+* 适用内核: 待测
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## 注意事项
+1. 为避免不必要的麻烦，食用前请先阅读**注意事项**和**用户协议**
+2. Sheas Dop 仍处于**开发阶段**，但每个正式版发布前会尽量确保其**稳定可用**
 
-## Type Support for `.vue` Imports in TS
+## 用户协议
+1. [隐私政策](#)
+2. [使用协议](#)
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+## 部署地址
+[https://dop.spacetimee.xyz](https://dop.spacetimee.xyz)
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+## 食用文档
+**[Ona Dop Instruction](https://github.com/SpaceTimee/Ona-Dop/wiki/Ona-Dop-Instruction)**
 
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+## 项目构建
+[Ona Dop Build](https://github.com/SpaceTimee/Ona-Dop/wiki/Ona-Dop-Build)
 
-## Customize configuration
+## 开发者
+**Space Time**
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+## 联系方式
+1. **新 QQ 群 (主群): 338919498**
+2. 新 TG 群 (分群) (宽松管理): [PixCealerChat](https://t.me/PixCealerChat)
+3. **邮箱: Zeus6_6@163.com**
 
-## Project Setup
-
-```sh
-pnpm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-pnpm dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-pnpm build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-pnpm test:unit
-```
-
-### Run End-to-End Tests with [Cypress](https://www.cypress.io/)
-
-```sh
-pnpm test:e2e:dev
-```
-
-This runs the end-to-end tests against the Vite development server.
-It is much faster than the production build.
-
-But it's still recommended to test the production build with `test:e2e` before deploying (e.g. in CI environments):
-
-```sh
-pnpm build
-pnpm test:e2e
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-pnpm lint
-```
+•ᴗ•
