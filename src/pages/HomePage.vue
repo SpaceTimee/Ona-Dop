@@ -1,12 +1,12 @@
 <script setup lang="ts">
+import { ref, reactive, type Ref, type UnwrapNestedRefs } from 'vue'
 import axios from 'axios'
-import { reactive, ref } from 'vue'
 
-const url: any = ref('')
-const ips: Array<any> = reactive([])
+const url: Ref<string> = ref('')
+const ips: UnwrapNestedRefs<Set<string>> = reactive(new Set<string>())
 
-async function resolutionStart() {
-  ips.length = 0
+async function resolutionStart(): Promise<void> {
+  ips.clear()
 
   const domain: string = url.value.replace(/^(https?:|ftp:)(\/\/)/, '').split('/')[0]
   await resolve(`https://dns.alidns.com/resolve?name=${domain}`)
@@ -18,59 +18,46 @@ async function resolve(url: string) {
   await axios
     .get(url)
     .then((response) => {
-      for (const answer of response.data.Answer)
-        if (!ips.includes(answer.data)) ips.push(answer.data)
+      for (const answer of response.data.Answer) ips.add(answer.data)
     })
     .catch((error) => {
-      console.log(error)
+      console.error(error)
     })
 }
 </script>
 
 <template>
-  <div class="search-div">
-    <input
-      class="search-input"
+  <v-card class="search-v-card">
+    <v-text-field
       v-model="url"
-      placeholder="Gimme Ur URL"
+      variant="solo"
+      hide-details
+      label="Gimme Ur URL"
+      autofocus
       @keypress.enter="resolutionStart"
     />
-    <button class="search-button" @click="resolutionStart">Resolve</button>
-  </div>
-  <ul>
-    <li class="ip-li" v-for="ip in ips" :key="ip">{{ ip }}</li>
-  </ul>
+    <v-btn class="search-v-btn" @click="resolutionStart">Resolve</v-btn>
+  </v-card>
+  <v-list class="text-body-2" lines="one">
+    <v-list-item v-for="ip in ips" :key="ip" :value="ip">{{ ip }}</v-list-item>
+  </v-list>
 </template>
 
 <style scoped>
-.search-div {
-  display: flex;
-  padding: 0.6rem;
-  margin: 1rem;
-  border: none;
-  border-radius: 6px;
-  background-color: #00bd7e;
+.search-v-card {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background-color: hsl(160, 100%, 37%);
   color: white;
 }
 
-.search-input {
-  padding: 0.6rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  flex: 1;
-}
-
-.search-button {
-  padding: 0.6rem;
-  margin-left: 0.6rem;
-  background-color: #00bd7e;
-  color: #fff;
-  border: 1px solid white;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.ip-li {
-  margin-top: 0.6rem;
+.search-v-btn {
+  display: inline-block;
+  height: 100%;
+  margin-left: 1rem;
+  border: 1px solid gainsboro;
+  background-color: hsl(160, 100%, 37%);
 }
 </style>
