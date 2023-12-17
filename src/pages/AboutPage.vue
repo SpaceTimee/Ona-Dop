@@ -1,20 +1,13 @@
 <template>
   <v-card class="header-v-card text-h5">Ona Dop</v-card>
-  <v-list class="text-body-2" lines="one">
-    <v-list-item value="Developer">
-      <p>Developer: Space Time</p>
-    </v-list-item>
-    <v-list-item value="Blog">
-      <p>
-        Blog:
-        <a href="https://blog.spacetimee.xyz" rel="external noopener noreferrer"
-          >https://blog.spacetimee.xyz</a
-        >
-      </p>
-    </v-list-item>
-    <v-list-item value="Version">
-      <p>Version: 0.0.2 (Demo)</p>
-    </v-list-item>
+  <v-list class="text-body-2" lines="one" density="compact">
+    <v-list-item value="Developer" href="https://www.spacetimee.xyz"
+      >Developer: Space Time</v-list-item
+    >
+    <v-list-item value="Blog" href="https://blog.spacetimee.xyz"
+      >Blog: blog.spacetimee.xyz</v-list-item
+    >
+    <v-list-item value="Version">Version: 0.0.3 (Demo)</v-list-item>
   </v-list>
 </template>
 

@@ -38,8 +38,10 @@ async function resolve(url: string) {
     />
     <v-btn class="search-v-btn" @click="resolutionStart">Resolve</v-btn>
   </v-card>
-  <v-list class="text-body-2" lines="one">
-    <v-list-item v-for="ip in ips" :key="ip" :value="ip">{{ ip }}</v-list-item>
+  <v-list class="text-body-2" lines="one" density="compact">
+    <v-list-item v-for="ip in ips" :key="ip" :value="ip" :href="`http://${ip}`">{{
+      ip
+    }}</v-list-item>
   </v-list>
 </template>
 
@@ -57,7 +59,7 @@ async function resolve(url: string) {
   display: inline-block;
   height: 100%;
   margin-left: 1rem;
-  border: 1px solid gainsboro;
+  border: 0.1rem solid white;
   background-color: hsl(160, 100%, 37%);
 }
 </style>
