@@ -7,7 +7,7 @@
     <v-list-item value="Blog" href="https://blog.spacetimee.xyz"
       >Blog: blog.spacetimee.xyz</v-list-item
     >
-    <v-list-item value="Version">Version: 0.0.3 (Demo)</v-list-item>
+    <v-list-item value="Version">Version: 0.0.4 (Demo)</v-list-item>
   </v-list>
 </template>
 
