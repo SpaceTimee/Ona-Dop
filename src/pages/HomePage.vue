@@ -9,16 +9,22 @@ async function resolutionStart(): Promise<void> {
   ips.clear()
 
   const domain: string = url.value.replace(/^(https?:|ftp:)(\/\/)/, '').split('/')[0]
-  await resolve(`https://dns.alidns.com/resolve?name=${domain}`)
-  await resolve(`https://ns.net.kg/dns-query?name=${domain}`)
-  await resolve(`https://8.8.8.8/resolve?name=${domain}`)
+  if (domain && domain.toLowerCase() !== 'user ip') {
+    await resolve(`https://dns.alidns.com/resolve?name=${domain}`)
+    await resolve(`https://ns.net.kg/dns-query?name=${domain}`)
+    await resolve(`https://8.8.8.8/resolve?name=${domain}`)
+  } else {
+    url.value = 'User IP'
+    await resolve('https://jsonip.com', false)
+  }
 }
 
-async function resolve(url: string) {
+async function resolve(url: string, isDomainIp: boolean = true): Promise<void> {
   await axios
     .get(url)
     .then((response) => {
-      for (const answer of response.data.Answer) ips.add(answer.data)
+      if (isDomainIp) for (const answer of response.data.Answer) ips.add(answer.data)
+      else ips.add(response.data.ip)
     })
     .catch((error) => {
       console.error(error)
