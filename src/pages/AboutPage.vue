@@ -11,11 +11,10 @@
   </v-list>
 </template>
 
-<style scoped>
+<style scoped lang="less">
 .header-v-card {
   margin-bottom: 1rem;
-  padding: 1rem;
-  background-color: hsl(160, 100%, 37%);
+  background-color: @primary-color;
   text-align: center;
   color: white;
 }

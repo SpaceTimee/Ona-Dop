@@ -1,7 +1,17 @@
 * {
   border-radius: 0.5rem !important;
 }
-
+* a {
+  padding: 0 0.3rem;
+  text-decoration: none;
+  color: #00bd7e;
+  transition: 0.5s;
+}
+@media (hover: hover) {
+  * a:hover {
+    background-color: rgba(0, 189, 126, 0.2);
+  }
+}
 :root {
   overflow: auto;
   font-size: calc(0.5rem + 1vw);
@@ -19,27 +29,12 @@
     'Helvetica Neue',
     sans-serif;
 }
-
-#app,
-body {
+:root body {
   min-height: 100vh;
 }
-
-#app {
+:root body #app {
   display: grid;
   grid-template-rows: auto 1fr;
+  min-height: 100vh;
   padding: 1rem;
-}
-
-a {
-  padding: 0 0.3rem;
-  text-decoration: none;
-  color: hsl(160, 100%, 37%);
-  transition: 0.5s;
-}
-
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
 }

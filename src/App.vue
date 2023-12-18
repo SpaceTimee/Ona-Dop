@@ -7,7 +7,7 @@ import { RouterView } from 'vue-router'
     <v-tab to="/">Home</v-tab>
     <v-tab to="/about">About</v-tab>
   </v-tabs>
-  <v-card class="pages-card">
+  <v-card>
     <RouterView v-slot="{ Component }">
       <KeepAlive>
         <component :is="Component" />
@@ -16,8 +16,13 @@ import { RouterView } from 'vue-router'
   </v-card>
 </template>
 
-<style scoped>
-.pages-card {
-  padding: 1rem;
+<style scoped lang="less">
+.v-tabs {
+  min-height: 2.5rem;
+  color: @primary-color;
+
+  .v-tab {
+    min-height: 2.5rem;
+  }
 }
 </style>

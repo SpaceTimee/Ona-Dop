@@ -11,6 +11,13 @@ export default defineConfig({
     vueJsx(),
     vuetify()
   ],
+  css: {
+    preprocessorOptions: {
+      less: {
+        additionalData: `@import url('./src/assets/define');`
+      }
+    }
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
