@@ -8,9 +8,6 @@ dependencies:
   axios:
     specifier: ^1.6.2
     version: registry.npmmirror.com/axios@1.6.2(debug@4.3.4)
-  less:
-    specifier: ^4.2.0
-    version: registry.npmmirror.com/less@4.2.0
   pinia:
     specifier: ^2.1.7
     version: registry.npmmirror.com/pinia@2.1.7(typescript@5.2.2)(vue@3.3.13)
@@ -76,6 +73,9 @@ devDependencies:
   jsdom:
     specifier: ^22.1.0
     version: registry.npmmirror.com/jsdom@22.1.0
+  less:
+    specifier: ^4.2.0
+    version: registry.npmmirror.com/less@4.2.0
   npm-run-all2:
     specifier: ^6.1.1
     version: registry.npmmirror.com/npm-run-all2@6.1.1
