@@ -2,33 +2,33 @@
 import { ref, reactive, type Ref, type UnwrapNestedRefs } from 'vue'
 import axios from 'axios'
 
-type SourceType = 'Ali' | 'Arashi' | 'Google'
-type ColorType = 'red' | 'blue' | 'green'
+type Source = 'Ali' | 'Arashi' | 'Google'
+enum Reliability {
+  Ali,
+  Arashi,
+  Google
+}
+enum Color {
+  Ali = 'red',
+  Arashi = 'blue',
+  Google = 'green'
+}
 
 class IpInfo {
   readonly ip: string
-  readonly source?: SourceType
-  readonly color?: ColorType
+  readonly source?: Source
 
-  constructor(ip: string, source?: SourceType) {
+  constructor(ip: string, source?: Source) {
     this.ip = ip
     this.source = source
-    this.color =
-      source === 'Ali'
-        ? 'red'
-        : source === 'Arashi'
-          ? 'blue'
-          : source === 'Google'
-            ? 'green'
-            : undefined
   }
 }
 
 const url: Ref<string> = ref('')
-const ipInfos: UnwrapNestedRefs<Set<IpInfo>> = reactive(new Set<IpInfo>())
+const ipInfos: UnwrapNestedRefs<Array<IpInfo>> = reactive(new Array<IpInfo>())
 
 async function resolutionStart(): Promise<void> {
-  ipInfos.clear()
+  ipInfos.length = 0
 
   const domain: string = url.value.replace(/^(https?:|ftp:)(\/\/)/, '').split('/')[0]
   if (domain && domain.toLowerCase() !== 'user ip') {
@@ -41,13 +41,23 @@ async function resolutionStart(): Promise<void> {
   }
 }
 
-async function resolve(url: string, source?: SourceType): Promise<void> {
+async function resolve(url: string, source?: Source): Promise<void> {
   await axios
     .get(url)
     .then((response) => {
-      if (source)
-        for (const answer of response.data.Answer) ipInfos.add(new IpInfo(answer.data, source))
-      else ipInfos.add(new IpInfo(response.data.ip))
+      if (source !== undefined)
+        for (const answer of response.data.Answer) {
+          let shouldPush: boolean = true
+          for (const ipInfo of ipInfos)
+            if (answer.data === ipInfo.ip) {
+              if (Reliability[source] > Reliability[ipInfo.source!])
+                ipInfos.splice(ipInfos.indexOf(ipInfo), 1)
+              else shouldPush = false
+              break
+            }
+          if (shouldPush) ipInfos.push(new IpInfo(answer.data, source))
+        }
+      else ipInfos.push(new IpInfo(response.data.ip))
     })
     .catch((error) => {
       console.error(error)
@@ -73,8 +83,8 @@ async function resolve(url: string, source?: SourceType): Promise<void> {
       :key="ipInfo.ip"
       :value="ipInfo.ip"
       :href="`http://${ipInfo.ip}`"
-      :color="ipInfo.color"
-      :base-color="ipInfo.color"
+      :color="Color[ipInfo.source!]"
+      :base-color="Color[ipInfo.source!]"
       >{{ ipInfo.ip }}</v-list-item
     >
   </v-list>
