@@ -2,29 +2,52 @@
 import { ref, reactive, type Ref, type UnwrapNestedRefs } from 'vue'
 import axios from 'axios'
 
-const url: Ref<string> = ref('')
-const ips: UnwrapNestedRefs<Set<string>> = reactive(new Set<string>())
+type SourceType = 'Ali' | 'Arashi' | 'Google'
+type ColorType = 'red' | 'blue' | 'green'
 
-async function resolutionStart(): Promise<void> {
-  ips.clear()
+class IpInfo {
+  readonly ip: string
+  readonly source?: SourceType
+  readonly color?: ColorType
 
-  const domain: string = url.value.replace(/^(https?:|ftp:)(\/\/)/, '').split('/')[0]
-  if (domain && domain.toLowerCase() !== 'user ip') {
-    await resolve(`https://dns.alidns.com/resolve?name=${domain}`)
-    await resolve(`https://ns.net.kg/dns-query?name=${domain}`)
-    await resolve(`https://8.8.8.8/resolve?name=${domain}`)
-  } else {
-    url.value = 'User IP'
-    await resolve('https://jsonip.com', false)
+  constructor(ip: string, source?: SourceType) {
+    this.ip = ip
+    this.source = source
+    this.color =
+      source === 'Ali'
+        ? 'red'
+        : source === 'Arashi'
+          ? 'blue'
+          : source === 'Google'
+            ? 'green'
+            : undefined
   }
 }
 
-async function resolve(url: string, isDomainIp: boolean = true): Promise<void> {
+const url: Ref<string> = ref('')
+const ipInfos: UnwrapNestedRefs<Set<IpInfo>> = reactive(new Set<IpInfo>())
+
+async function resolutionStart(): Promise<void> {
+  ipInfos.clear()
+
+  const domain: string = url.value.replace(/^(https?:|ftp:)(\/\/)/, '').split('/')[0]
+  if (domain && domain.toLowerCase() !== 'user ip') {
+    await resolve(`https://dns.alidns.com/resolve?name=${domain}`, 'Ali')
+    await resolve(`https://ns.net.kg/dns-query?name=${domain}`, 'Arashi')
+    await resolve(`https://8.8.8.8/resolve?name=${domain}`, 'Google')
+  } else {
+    url.value = 'User IP'
+    await resolve('https://jsonip.com')
+  }
+}
+
+async function resolve(url: string, source?: SourceType): Promise<void> {
   await axios
     .get(url)
     .then((response) => {
-      if (isDomainIp) for (const answer of response.data.Answer) ips.add(answer.data)
-      else ips.add(response.data.ip)
+      if (source)
+        for (const answer of response.data.Answer) ipInfos.add(new IpInfo(answer.data, source))
+      else ipInfos.add(new IpInfo(response.data.ip))
     })
     .catch((error) => {
       console.error(error)
@@ -45,9 +68,15 @@ async function resolve(url: string, isDomainIp: boolean = true): Promise<void> {
     <v-btn class="search-v-btn" @click="resolutionStart">Resolve</v-btn>
   </v-card>
   <v-list class="text-body-2" lines="one" density="compact">
-    <v-list-item v-for="ip in ips" :key="ip" :value="ip" :href="`http://${ip}`">{{
-      ip
-    }}</v-list-item>
+    <v-list-item
+      v-for="ipInfo in ipInfos"
+      :key="ipInfo.ip"
+      :value="ipInfo.ip"
+      :href="`http://${ipInfo.ip}`"
+      :color="ipInfo.color"
+      :base-color="ipInfo.color"
+      >{{ ipInfo.ip }}</v-list-item
+    >
   </v-list>
 </template>
 
