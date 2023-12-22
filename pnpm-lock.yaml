@@ -95,8 +95,8 @@ devDependencies:
     specifier: ^0.34.6
     version: registry.npmmirror.com/vitest@0.34.6(jsdom@22.1.0)(less@4.2.0)
   vue-tsc:
-    specifier: ^1.8.25
-    version: registry.npmmirror.com/vue-tsc@1.8.25(typescript@5.2.2)
+    specifier: ^1.8.26
+    version: registry.npmmirror.com/vue-tsc@1.8.26(typescript@5.2.2)
 
 packages:
 
@@ -1544,7 +1544,7 @@ packages:
     dependencies:
       eslint: registry.npmmirror.com/eslint@8.56.0
       eslint-config-prettier: registry.npmmirror.com/eslint-config-prettier@8.10.0(eslint@8.56.0)
-      eslint-plugin-prettier: registry.npmmirror.com/eslint-plugin-prettier@5.1.0(eslint-config-prettier@8.10.0)(eslint@8.56.0)(prettier@3.1.1)
+      eslint-plugin-prettier: registry.npmmirror.com/eslint-plugin-prettier@5.1.1(eslint-config-prettier@8.10.0)(eslint@8.56.0)(prettier@3.1.1)
       prettier: registry.npmmirror.com/prettier@3.1.1
     transitivePeerDependencies:
       - '@types/eslint'
@@ -1574,11 +1574,11 @@ packages:
       - supports-color
     dev: true
 
-  registry.npmmirror.com/@vue/language-core@1.8.25(typescript@5.2.2):
-    resolution: {integrity: sha512-NJk/5DnAZlpvXX8BdWmHI45bWGLViUaS3R/RMrmFSvFMSbJKuEODpM4kR0F0Ofv5SFzCWuNiMhxameWpVdQsnA==, tarball: https://registry.npmmirror.com/@vue/language-core/-/language-core-1.8.25.tgz}
-    id: registry.npmmirror.com/@vue/language-core/1.8.25
+  registry.npmmirror.com/@vue/language-core@1.8.26(typescript@5.2.2):
+    resolution: {integrity: sha512-9cmza/Y2YTiOnKZ0Mi9zsNn7Irw+aKirP+5LLWVSNaL3fjKJjW1cD3HGBckasY2RuVh4YycvdA9/Q6EBpVd/7Q==, tarball: https://registry.npmmirror.com/@vue/language-core/-/language-core-1.8.26.tgz}
+    id: registry.npmmirror.com/@vue/language-core/1.8.26
     name: '@vue/language-core'
-    version: 1.8.25
+    version: 1.8.26
     peerDependencies:
       typescript: '*'
     peerDependenciesMeta:
@@ -1663,7 +1663,7 @@ packages:
     dependencies:
       js-beautify: registry.npmmirror.com/js-beautify@1.14.11
       vue: registry.npmmirror.com/vue@3.3.13(typescript@5.2.2)
-      vue-component-type-helpers: registry.npmmirror.com/vue-component-type-helpers@1.8.25
+      vue-component-type-helpers: registry.npmmirror.com/vue-component-type-helpers@1.8.26
     dev: true
 
   registry.npmmirror.com/@vue/tsconfig@0.4.0:
@@ -2018,8 +2018,8 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
     dependencies:
-      caniuse-lite: registry.npmmirror.com/caniuse-lite@1.0.30001570
-      electron-to-chromium: registry.npmmirror.com/electron-to-chromium@1.4.615
+      caniuse-lite: registry.npmmirror.com/caniuse-lite@1.0.30001571
+      electron-to-chromium: registry.npmmirror.com/electron-to-chromium@1.4.616
       node-releases: registry.npmmirror.com/node-releases@2.0.14
       update-browserslist-db: registry.npmmirror.com/update-browserslist-db@1.0.13(browserslist@4.22.2)
     dev: true
@@ -2086,10 +2086,10 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  registry.npmmirror.com/caniuse-lite@1.0.30001570:
-    resolution: {integrity: sha512-+3e0ASu4sw1SWaoCtvPeyXp+5PsjigkSt8OXZbF9StH5pQWbxEjLAZE3n8Aup5udop1uRiKA7a4utUk/uoSpUw==, tarball: https://registry.npmmirror.com/caniuse-lite/-/caniuse-lite-1.0.30001570.tgz}
+  registry.npmmirror.com/caniuse-lite@1.0.30001571:
+    resolution: {integrity: sha512-tYq/6MoXhdezDLFZuCO/TKboTzuQ/xR5cFdgXPfDtM7/kchBO3b4VWghE/OAi/DV7tTdhmLjZiZBZi1fA/GheQ==, tarball: https://registry.npmmirror.com/caniuse-lite/-/caniuse-lite-1.0.30001571.tgz}
     name: caniuse-lite
-    version: 1.0.30001570
+    version: 1.0.30001571
     dev: true
 
   registry.npmmirror.com/caseless@0.12.0:
@@ -2594,10 +2594,10 @@ packages:
       semver: registry.npmmirror.com/semver@7.5.4
     dev: true
 
-  registry.npmmirror.com/electron-to-chromium@1.4.615:
-    resolution: {integrity: sha512-/bKPPcgZVUziECqDc+0HkT87+0zhaWSZHNXqF8FLd2lQcptpmUFwoCSWjCdOng9Gdq+afKArPdEg/0ZW461Eng==, tarball: https://registry.npmmirror.com/electron-to-chromium/-/electron-to-chromium-1.4.615.tgz}
+  registry.npmmirror.com/electron-to-chromium@1.4.616:
+    resolution: {integrity: sha512-1n7zWYh8eS0L9Uy+GskE0lkBUNK83cXTVJI0pU3mGprFsbfSdAc15VTFbo+A+Bq4pwstmL30AVcEU3Fo463lNg==, tarball: https://registry.npmmirror.com/electron-to-chromium/-/electron-to-chromium-1.4.616.tgz}
     name: electron-to-chromium
-    version: 1.4.615
+    version: 1.4.616
     dev: true
 
   registry.npmmirror.com/email-addresses@5.0.0:
@@ -2738,11 +2738,11 @@ packages:
       globals: registry.npmmirror.com/globals@13.24.0
     dev: true
 
-  registry.npmmirror.com/eslint-plugin-prettier@5.1.0(eslint-config-prettier@8.10.0)(eslint@8.56.0)(prettier@3.1.1):
-    resolution: {integrity: sha512-hQc+2zbnMeXcIkg+pKZtVa+3Yqx4WY7SMkn1PLZ4VbBEU7jJIpVn9347P8BBhTbz6ne85aXvQf30kvexcqBeWw==, tarball: https://registry.npmmirror.com/eslint-plugin-prettier/-/eslint-plugin-prettier-5.1.0.tgz}
-    id: registry.npmmirror.com/eslint-plugin-prettier/5.1.0
+  registry.npmmirror.com/eslint-plugin-prettier@5.1.1(eslint-config-prettier@8.10.0)(eslint@8.56.0)(prettier@3.1.1):
+    resolution: {integrity: sha512-WQpV3mSmIobb77s4qiCZu3dBrZZ0rj8ckSfBtRrgNK9Wnh2s3eiaxNTWloz1LJ1WtvqZES/PAI7PLvsrGt/CEA==, tarball: https://registry.npmmirror.com/eslint-plugin-prettier/-/eslint-plugin-prettier-5.1.1.tgz}
+    id: registry.npmmirror.com/eslint-plugin-prettier/5.1.1
     name: eslint-plugin-prettier
-    version: 5.1.0
+    version: 5.1.1
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
       '@types/eslint': '>=8.0.0'
@@ -2962,7 +2962,7 @@ packages:
       human-signals: registry.npmmirror.com/human-signals@4.3.1
       is-stream: registry.npmmirror.com/is-stream@3.0.0
       merge-stream: registry.npmmirror.com/merge-stream@2.0.0
-      npm-run-path: registry.npmmirror.com/npm-run-path@5.1.0
+      npm-run-path: registry.npmmirror.com/npm-run-path@5.2.0
       onetime: registry.npmmirror.com/onetime@6.0.0
       signal-exit: registry.npmmirror.com/signal-exit@3.0.7
       strip-final-newline: registry.npmmirror.com/strip-final-newline@3.0.0
@@ -4407,10 +4407,10 @@ packages:
       path-key: registry.npmmirror.com/path-key@3.1.1
     dev: true
 
-  registry.npmmirror.com/npm-run-path@5.1.0:
-    resolution: {integrity: sha512-sJOdmRGrY2sjNTRMbSvluQqg+8X7ZK61yvzBEIDhz4f8z1TZFYABsqjjCBd/0PUNE9M6QDgHJXQkGUEm7Q+l9Q==, tarball: https://registry.npmmirror.com/npm-run-path/-/npm-run-path-5.1.0.tgz}
+  registry.npmmirror.com/npm-run-path@5.2.0:
+    resolution: {integrity: sha512-W4/tgAXFqFA0iL7fk0+uQ3g7wkL8xJmx3XdK0VGb4cHW//eZTtKGvFBBoRKVTpY7n6ze4NL9ly7rgXcHufqXKg==, tarball: https://registry.npmmirror.com/npm-run-path/-/npm-run-path-5.2.0.tgz}
     name: npm-run-path
-    version: 5.1.0
+    version: 5.2.0
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     dependencies:
       path-key: registry.npmmirror.com/path-key@4.0.0
@@ -5859,10 +5859,10 @@ packages:
       - terser
     dev: true
 
-  registry.npmmirror.com/vue-component-type-helpers@1.8.25:
-    resolution: {integrity: sha512-NCA6sekiJIMnMs4DdORxATXD+/NRkQpS32UC+I1KQJUasx+Z7MZUb3Y+MsKsFmX+PgyTYSteb73JW77AibaCCw==, tarball: https://registry.npmmirror.com/vue-component-type-helpers/-/vue-component-type-helpers-1.8.25.tgz}
+  registry.npmmirror.com/vue-component-type-helpers@1.8.26:
+    resolution: {integrity: sha512-CIwb7s8cqUuPpHDk+0DY8EJ/x8tzdzqw8ycX8hhw1GnbngTgSsIceHAqrrLjmv8zXi+j5XaiqYRQMw8sKyyjkw==, tarball: https://registry.npmmirror.com/vue-component-type-helpers/-/vue-component-type-helpers-1.8.26.tgz}
     name: vue-component-type-helpers
-    version: 1.8.25
+    version: 1.8.26
     dev: true
 
   registry.npmmirror.com/vue-demi@0.14.6(vue@3.3.13):
@@ -5925,17 +5925,17 @@ packages:
       he: registry.npmmirror.com/he@1.2.0
     dev: true
 
-  registry.npmmirror.com/vue-tsc@1.8.25(typescript@5.2.2):
-    resolution: {integrity: sha512-lHsRhDc/Y7LINvYhZ3pv4elflFADoEOo67vfClAfF2heVHpHmVquLSjojgCSIwzA4F0Pc4vowT/psXCYcfk+iQ==, tarball: https://registry.npmmirror.com/vue-tsc/-/vue-tsc-1.8.25.tgz}
-    id: registry.npmmirror.com/vue-tsc/1.8.25
+  registry.npmmirror.com/vue-tsc@1.8.26(typescript@5.2.2):
+    resolution: {integrity: sha512-jMEJ4aqU/l1hdgmeExH5h1TFoN+hbho0A2ZAhHy53/947DGm7Qj/bpB85VpECOCwV00h7JYNVnvoD2ceOorB4Q==, tarball: https://registry.npmmirror.com/vue-tsc/-/vue-tsc-1.8.26.tgz}
+    id: registry.npmmirror.com/vue-tsc/1.8.26
     name: vue-tsc
-    version: 1.8.25
+    version: 1.8.26
     hasBin: true
     peerDependencies:
       typescript: '*'
     dependencies:
       '@volar/typescript': registry.npmmirror.com/@volar/typescript@1.11.1
-      '@vue/language-core': registry.npmmirror.com/@vue/language-core@1.8.25(typescript@5.2.2)
+      '@vue/language-core': registry.npmmirror.com/@vue/language-core@1.8.26(typescript@5.2.2)
       semver: registry.npmmirror.com/semver@7.5.4
       typescript: registry.npmmirror.com/typescript@5.2.2
     dev: true

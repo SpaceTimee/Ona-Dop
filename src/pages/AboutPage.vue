@@ -33,7 +33,7 @@
       >Agreement: ona-dop-docs.spacetimee.xyz/agreement</v-list-item
     >
 
-    <v-list-item value="Version" disabled>Version: 0.0.4 (Demo)</v-list-item>
+    <v-list-item value="Version" disabled>Version: 1.0.0</v-list-item>
   </v-list>
 </template>
 
