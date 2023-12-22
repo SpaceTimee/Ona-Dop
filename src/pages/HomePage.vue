@@ -47,21 +47,25 @@ async function resolve(url: string, source?: Source): Promise<void> {
     .then((response) => {
       if (source !== undefined)
         for (const answer of response.data.Answer) {
-          let shouldPush: boolean = true
-          for (const ipInfo of ipInfos)
-            if (answer.data === ipInfo.ip) {
-              if (Reliability[source] > Reliability[ipInfo.source!])
-                ipInfos.splice(ipInfos.indexOf(ipInfo), 1)
-              else shouldPush = false
-              break
-            }
-          if (shouldPush) ipInfos.push(new IpInfo(answer.data, source))
+          const { deledFormer, pushedLatter } = replacingJudge(answer, source)
+          if (deledFormer) ipInfos.splice(ipInfos.indexOf(deledFormer), 1)
+          if (pushedLatter) ipInfos.push(pushedLatter)
         }
       else ipInfos.push(new IpInfo(response.data.ip))
     })
     .catch((error) => {
       console.error(error)
     })
+}
+
+function replacingJudge(answer: any, source: Source): { deledFormer?: IpInfo; pushedLatter?: IpInfo } {
+  for (const ipInfo of ipInfos)
+    if (ipInfo.ip === answer.data)
+      if (Reliability[ipInfo.source!] <= Reliability[source])
+        return { deledFormer: ipInfo, pushedLatter: new IpInfo(answer.data, source) }
+      else return {}
+
+  return { pushedLatter: new IpInfo(answer.data, source) }
 }
 </script>
 

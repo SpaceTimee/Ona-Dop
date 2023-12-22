@@ -11,18 +11,10 @@
       >Email: Zeus6_6@163.com</v-list-item
     >
 
-    <v-list-item
-      value="Docs"
-      href="https://github.com/SpaceTimee/Ona-Dop/wiki"
-      color="blue"
-      base-color="blue"
+    <v-list-item value="Docs" href="https://github.com/SpaceTimee/Ona-Dop/wiki" color="blue" base-color="blue"
       >Docs: github.com/SpaceTimee/Ona-Dop/wiki</v-list-item
     >
-    <v-list-item
-      value="Repo"
-      href="https://github.com/SpaceTimee/Ona-Dop"
-      color="blue"
-      base-color="blue"
+    <v-list-item value="Repo" href="https://github.com/SpaceTimee/Ona-Dop" color="blue" base-color="blue"
       >Repo: github.com/SpaceTimee/Ona-Dop</v-list-item
     >
 
