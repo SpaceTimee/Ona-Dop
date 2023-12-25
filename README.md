@@ -1,5 +1,5 @@
 <h1 align="center">Ona 🝔 Dop</h1>
-<h3 align="center">- Just resolve it -</h3>
+<h3 align="center">- Yet Another DNS Resolver -</h3>
 </br>
 
 ## 自我介绍
@@ -23,6 +23,12 @@
 
 ## 项目构建
 [Ona Dop Build](https://github.com/SpaceTimee/Ona-Dop/wiki/Ona-Dop-Build)
+
+## 项目原理
+通过向加密 DNS 服务器发送解析请求以实现抗污染
+
+## 致谢名单
+* **ArashiDNS: 为本项目提供重要的域名解析来源**
 
 ## 开发者
 **Space Time**
