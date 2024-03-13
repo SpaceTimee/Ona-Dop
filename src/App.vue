@@ -9,11 +9,11 @@ import { SpeedInsights } from '@vercel/speed-insights/vue';
     <v-tab to="/about">About</v-tab>
   </v-tabs>
   <v-card>
-    <RouterView v-slot="{ Component }">
-      <KeepAlive>
+    <router-view v-slot="{ Component }">
+      <keep-alive>
         <component :is="Component" />
-      </KeepAlive>
-    </RouterView>
+      </keep-alive>
+    </router-view>
   </v-card>
   <SpeedInsights />
 </template>
