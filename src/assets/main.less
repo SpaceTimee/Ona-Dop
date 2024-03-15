@@ -1,7 +1,9 @@
 @import url('./global');
 
 * {
-  border-radius: 0.5rem !important;
+  &:not(.v-text-field > * > * *) {
+    border-radius: 0.5rem !important;
+  }
 
   a {
     padding: 0 0.3rem;

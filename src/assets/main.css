@@ -1,4 +1,4 @@
-* {
+*:not(.v-text-field > * > * *) {
   border-radius: 0.5rem !important;
 }
 * a {
