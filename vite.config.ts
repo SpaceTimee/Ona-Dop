@@ -5,11 +5,7 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import vuetify from 'vite-plugin-vuetify'
 
 export default defineConfig({
-  plugins: [
-    vue(),
-    vueJsx(),
-    vuetify()
-  ],
+  plugins: [vue(), vueJsx(), vuetify()],
   css: {
     preprocessorOptions: {
       less: {
