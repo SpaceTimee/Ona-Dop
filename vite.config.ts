@@ -9,7 +9,7 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       less: {
-        additionalData: `@import url('./src/assets/global');`
+        additionalData: "@import url('./src/assets/global');"
       }
     }
   },
