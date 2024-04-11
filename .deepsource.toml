@@ -6,3 +6,9 @@ name = "javascript"
   [analyzers.meta]
   plugins = ["vue"]
   environment = ["browser"]
+
+[[transformers]]
+name = "prettier"
+
+[[transformers]]
+name = "standardjs"
