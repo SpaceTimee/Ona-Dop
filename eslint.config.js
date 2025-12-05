@@ -7,18 +7,18 @@ import cypress from 'eslint-plugin-cypress/flat'
 export default [
   {
     name: 'app/files-to-lint',
-    files: ['**/*.{js,mjs,jsx,ts,tsx,vue}'],
+    files: ['**/*.{js,mjs,jsx,ts,tsx,vue}']
   },
 
   {
     name: 'app/files-to-ignore',
-    ignores: ['**/dist/**', '**/dist-ssr/**', '**/coverage/**'],
+    ignores: ['**/dist/**', '**/dist-ssr/**', '**/coverage/**']
   },
 
   js.configs.recommended,
   ...pluginVue.configs['flat/essential'],
   ...vueTsEslintConfig(),
   skipFormatting,
-  
-  cypress.configs.recommended,
+
+  cypress.configs.recommended
 ]
