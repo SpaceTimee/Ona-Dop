@@ -58,8 +58,12 @@ async function resolve(url: string, source?: Source): Promise<void> {
     })
 }
 
+interface DnsAnswer {
+  data: string
+}
+
 // skipcq: JS-0323
-function replacingJudge(answer: any, source: Source): { deledFormer?: IpInfo; pushedLatter?: IpInfo } {
+function replacingJudge(answer: DnsAnswer, source: Source): { deledFormer?: IpInfo; pushedLatter?: IpInfo } {
   for (const ipInfo of ipInfos)
     if (ipInfo.ip === answer.data)
       if (Reliability[ipInfo.source!] <= Reliability[source])
