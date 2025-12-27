@@ -30,7 +30,7 @@ const ipInfos: UnwrapNestedRefs<Array<IpInfo>> = reactive(new Array<IpInfo>())
 async function resolutionStart(): Promise<void> {
   ipInfos.length = 0
 
-  const domain: string = url.value.replace(/^(https?:|ftp:)(\/\/)/, '').split('/')[0]
+  const domain: string = url.value.replace(/^(https?:|ftp:)(\/\/)/, '').split('/')[0] ?? ''
   if (domain && domain.toLowerCase() !== 'user ip') {
     await resolve(`https://dns.alidns.com/resolve?name=${domain}`, 'Ali')
     await resolve(`https://ns.net.kg/dns-query?name=${domain}`, 'Arashi')

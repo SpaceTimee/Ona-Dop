@@ -16,7 +16,7 @@ export default defineConfigWithVueTs(
   },
 
   js.configs.recommended,
-  ...pluginVue.configs['flat/essential'],
+  ...pluginVue.configs['flat/recommended'],
   vueTsConfigs.recommended,
   skipFormatting,
 
