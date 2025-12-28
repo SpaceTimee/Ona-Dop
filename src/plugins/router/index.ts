@@ -15,6 +15,10 @@ export default createRouter({
       path: '/about',
       name: 'about',
       component: AboutPage
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      redirect: '/'
     }
   ]
 })
