@@ -34,10 +34,10 @@ async function resolutionStart(): Promise<void> {
   if (domain && domain.toLowerCase() !== 'user ip') {
     await resolve(`https://dns.alidns.com/resolve?name=${domain}`, 'Ali')
     await resolve(`https://ns.net.kg/dns-query?name=${domain}`, 'Arashi')
-    await resolve(`https://8.8.8.8/resolve?name=${domain}`, 'Google')
+    await resolve(`https://prox.spacetimee.xyz/~/dns.google/resolve?name=${domain}`, 'Google')
   } else {
     url.value = 'User IP'
-    await resolve('https://jsonip.com')
+    await resolve('https://prox.spacetimee.xyz/~/jsonip.com')
   }
 }
 
