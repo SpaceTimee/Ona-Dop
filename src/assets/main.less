@@ -1,21 +1,17 @@
-@import url('./global');
+*:not(.v-text-field > * > * *) {
+  border-radius: 0.5rem !important;
+}
 
-* {
-  &:not(.v-text-field > * > * *) {
-    border-radius: 0.5rem !important;
-  }
+a {
+  padding: 0 0.3rem;
+  text-decoration: none;
+  color: @primary-color;
+  transition: 0.5s;
+}
 
-  a {
-    padding: 0 0.3rem;
-    text-decoration: none;
-    color: @primary-color;
-    transition: 0.5s;
-
-    @media (hover: hover) {
-      &:hover {
-        background-color: fade(@primary-color, 20);
-      }
-    }
+@media (hover: hover) {
+  a:hover {
+    background-color: fade(@primary-color, 20);
   }
 }
 

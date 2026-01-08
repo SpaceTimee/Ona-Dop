@@ -2,17 +2,27 @@
 import { ref, reactive, type Ref, type UnwrapNestedRefs } from 'vue'
 import axios from 'axios'
 
-type Source = 'Ali' | 'Arashi' | 'Google'
-enum Reliability {
-  Ali,
-  Arashi,
-  Google
+type Resolver = {
+  source: string
+  endpoint: string
+  color: string
 }
-enum Color {
-  Ali = 'red',
-  Arashi = 'blue',
-  Google = 'green'
-}
+
+const RESOLVERS = [
+  { source: 'Ali', endpoint: 'https://dns.alidns.com/resolve?name=', color: 'red' },
+  { source: 'Arashi', endpoint: 'https://ns.net.kg/dns-query?name=', color: 'blue' },
+  { source: 'Google', endpoint: 'https://prox.spacetimee.xyz/~/dns.google/resolve?name=', color: 'green' }
+] as const satisfies ReadonlyArray<Resolver>
+
+type Source = (typeof RESOLVERS)[number]['source']
+
+const SOURCE_RELIABILITY: Record<Source, number> = Object.fromEntries(
+  RESOLVERS.map((resolver, index) => [resolver.source, index])
+) as Record<Source, number>
+
+const SOURCE_COLOR: Record<Source, string> = Object.fromEntries(
+  RESOLVERS.map((resolver) => [resolver.source, resolver.color])
+) as Record<Source, string>
 
 class IpInfo {
   readonly ip: string
@@ -24,21 +34,25 @@ class IpInfo {
   }
 }
 
-const url: Ref<string> = ref('')
-const ipInfos: UnwrapNestedRefs<Array<IpInfo>> = reactive(new Array<IpInfo>())
+const query: Ref<string> = ref('')
+const ipInfos: UnwrapNestedRefs<Array<IpInfo>> = reactive<IpInfo[]>([])
 
-async function resolutionStart(): Promise<void> {
+async function resolveQuery(): Promise<void> {
   ipInfos.length = 0
 
-  const domain: string = url.value.replace(/^(https?:|ftp:)(\/\/)/, '').split('/')[0] ?? ''
+  const domain: string =
+    query.value
+      .trim()
+      .replace(/^[a-z]+:\/\//i, '')
+      .split('/')[0]
+      ?.split(':')[0] ?? ''
   if (domain && domain.toLowerCase() !== 'user ip') {
-    await resolve(`https://dns.alidns.com/resolve?name=${domain}`, 'Ali')
-    await resolve(`https://ns.net.kg/dns-query?name=${domain}`, 'Arashi')
-    await resolve(`https://prox.spacetimee.xyz/~/dns.google/resolve?name=${domain}`, 'Google')
-  } else {
-    url.value = 'User IP'
-    await resolve('https://prox.spacetimee.xyz/~/jsonip.com')
+    for (const { source, endpoint } of RESOLVERS) await resolve(`${endpoint}${domain}`, source)
+    return
   }
+
+  query.value = 'User IP'
+  await resolve('https://prox.spacetimee.xyz/~/jsonip.com')
 }
 
 async function resolve(url: string, source?: Source): Promise<void> {
@@ -66,7 +80,7 @@ interface DnsAnswer {
 function replacingJudge(answer: DnsAnswer, source: Source): { deledFormer?: IpInfo; pushedLatter?: IpInfo } {
   for (const ipInfo of ipInfos)
     if (ipInfo.ip === answer.data)
-      if (Reliability[ipInfo.source!] <= Reliability[source])
+      if (SOURCE_RELIABILITY[ipInfo.source!] <= SOURCE_RELIABILITY[source])
         return { deledFormer: ipInfo, pushedLatter: new IpInfo(answer.data, source) }
       else return {}
 
@@ -77,14 +91,14 @@ function replacingJudge(answer: DnsAnswer, source: Source): { deledFormer?: IpIn
 <template>
   <v-card class="search-v-card">
     <v-text-field
-      v-model="url"
+      v-model="query"
       variant="solo"
       hide-details
       label="Gimme Ur URL"
       autofocus
-      @keypress.enter="resolutionStart"
+      @keyup.enter="resolveQuery"
     />
-    <v-btn class="search-v-btn" @click="resolutionStart">Resolve</v-btn>
+    <v-btn class="search-v-btn" @click="resolveQuery">Resolve</v-btn>
   </v-card>
   <v-list class="text-body-2" lines="one" density="compact">
     <v-list-item
@@ -92,10 +106,11 @@ function replacingJudge(answer: DnsAnswer, source: Source): { deledFormer?: IpIn
       :key="ipInfo.ip"
       :value="ipInfo.ip"
       :href="`http://${ipInfo.ip}`"
-      :color="Color[ipInfo.source!]"
-      :base-color="Color[ipInfo.source!]"
-      >{{ ipInfo.ip }}</v-list-item
+      :color="SOURCE_COLOR[ipInfo.source!]"
+      :base-color="SOURCE_COLOR[ipInfo.source!]"
     >
+      {{ ipInfo.ip }}
+    </v-list-item>
   </v-list>
 </template>
 
