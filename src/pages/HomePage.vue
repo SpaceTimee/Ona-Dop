@@ -11,12 +11,12 @@ type Resolver = {
 const RESOLVERS = [
   { source: 'Ali', endpoint: 'https://dns.alidns.com/resolve?name=', color: 'red' },
   { source: 'Arashi', endpoint: 'https://ns.net.kg/dns-query?name=', color: 'blue' },
-  { source: 'Google', endpoint: 'https://prox.spacetimee.xyz/~/dns.google/resolve?name=', color: 'green' }
+  { source: 'Google', endpoint: 'https://dns.google/resolve?name=', color: 'green' }
 ] as const satisfies ReadonlyArray<Resolver>
 
 type Source = (typeof RESOLVERS)[number]['source']
 
-const SOURCE_RELIABILITY: Record<Source, number> = Object.fromEntries(
+const SOURCE_PRIORITY: Record<Source, number> = Object.fromEntries(
   RESOLVERS.map((resolver, index) => [resolver.source, index])
 ) as Record<Source, number>
 
@@ -47,7 +47,7 @@ async function resolveQuery(): Promise<void> {
       .split('/')[0]
       ?.split(':')[0] ?? ''
   if (domain && domain.toLowerCase() !== 'user ip') {
-    for (const { source, endpoint } of RESOLVERS) await resolve(`${endpoint}${domain}`, source)
+    await Promise.all(RESOLVERS.map(({ source, endpoint }) => resolve(`${endpoint}${domain}`, source)))
     return
   }
 
@@ -60,31 +60,20 @@ async function resolve(url: string, source?: Source): Promise<void> {
     .get(url)
     .then((response) => {
       if (source !== undefined)
-        for (const answer of response.data.Answer) {
-          const { deledFormer, pushedLatter } = replacingJudge(answer, source)
-          if (deledFormer) ipInfos.splice(ipInfos.indexOf(deledFormer), 1)
-          if (pushedLatter) ipInfos.push(pushedLatter)
-        }
+        response.data.Answer?.forEach((answer: DnsAnswer) => {
+          const index = ipInfos.findIndex((info) => info.ip === answer.data)
+          if (index !== -1) {
+            if (SOURCE_PRIORITY[ipInfos[index]!.source!] <= SOURCE_PRIORITY[source])
+              ipInfos.splice(index, 1, new IpInfo(answer.data, source))
+          } else ipInfos.push(new IpInfo(answer.data, source))
+        })
       else ipInfos.push(new IpInfo(response.data.ip))
     })
-    .catch((error) => {
-      console.error(error)
-    })
+    .catch((error) => console.error(error))
 }
 
 interface DnsAnswer {
   data: string
-}
-
-// skipcq: JS-0323
-function replacingJudge(answer: DnsAnswer, source: Source): { deledFormer?: IpInfo; pushedLatter?: IpInfo } {
-  for (const ipInfo of ipInfos)
-    if (ipInfo.ip === answer.data)
-      if (SOURCE_RELIABILITY[ipInfo.source!] <= SOURCE_RELIABILITY[source])
-        return { deledFormer: ipInfo, pushedLatter: new IpInfo(answer.data, source) }
-      else return {}
-
-  return { pushedLatter: new IpInfo(answer.data, source) }
 }
 </script>
 

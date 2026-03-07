@@ -52,7 +52,7 @@ const ABOUT_ITEMS: AboutItem[] = [
   },
   {
     label: 'Version',
-    value: '1.0.4',
+    value: '1.0.6',
     disabled: true
   }
 ]
