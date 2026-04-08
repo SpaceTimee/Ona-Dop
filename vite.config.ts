@@ -12,8 +12,8 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       manifest: {
-        name: 'Ona-Dop',
-        short_name: 'Ona-Dop',
+        name: 'Ona Dop',
+        short_name: 'Ona Dop',
         description: 'Yet Another DNS Resolver',
         theme_color: '#00bd7e',
         icons: [
