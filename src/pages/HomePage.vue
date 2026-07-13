@@ -37,22 +37,45 @@ class IpInfo {
 const query: Ref<string> = ref('')
 const ipInfos: UnwrapNestedRefs<Array<IpInfo>> = reactive<IpInfo[]>([])
 
-async function resolveQuery(): Promise<void> {
-  ipInfos.length = 0
-
-  const domain: string =
-    query.value
+function parseDomain(domain: string): string {
+  return (
+    domain
       .trim()
       .replace(/^[a-z]+:\/\//i, '')
       .split('/')[0]
       ?.split(':')[0] ?? ''
-  if (domain && domain.toLowerCase() !== 'user ip') {
-    await Promise.all(RESOLVERS.map(({ source, endpoint }) => resolve(`${endpoint}${domain}`, source)))
+  )
+}
+
+async function resolveQuery(): Promise<void> {
+  ipInfos.length = 0
+
+  let domain: string = parseDomain(query.value)
+  if (!domain || domain.toLowerCase() === 'user ip') {
+    query.value = 'User IP'
+    await resolve(`${import.meta.env.VITE_PROX_URL}/~/jsonip.com`)
     return
   }
 
-  query.value = 'User IP'
-  await resolve('https://prox.spacetimee.xyz/~/jsonip.com')
+  await Promise.all(RESOLVERS.map(({ source, endpoint }) => resolve(`${endpoint}${domain}`, source)))
+
+  if (ipInfos.length > 0) return
+
+  domain = parseDomain(
+    await axios
+      .post(`${import.meta.env.VITE_SERVER_URL}/api/provider/chat`, {
+        messages: [{ role: 'user', content: `请根据以下内容仅返回一个相关域名：${query.value.trim()}` }]
+      })
+      .then((response) => response.data.content)
+      .catch((error) => {
+        console.error(error)
+        return ''
+      })
+  )
+  if (!domain) return
+
+  query.value = domain
+  await Promise.all(RESOLVERS.map(({ source, endpoint }) => resolve(`${endpoint}${domain}`, source)))
 }
 
 async function resolve(url: string, source?: Source): Promise<void> {

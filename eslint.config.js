@@ -2,7 +2,7 @@ import js from '@eslint/js'
 import pluginVue from 'eslint-plugin-vue'
 import { defineConfigWithVueTs, vueTsConfigs } from '@vue/eslint-config-typescript'
 import skipFormatting from '@vue/eslint-config-prettier/skip-formatting'
-import cypress from 'eslint-plugin-cypress/flat'
+import cypress from 'eslint-plugin-cypress'
 
 export default defineConfigWithVueTs(
   {
