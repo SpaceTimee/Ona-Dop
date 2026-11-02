@@ -9,9 +9,9 @@ type Resolver = {
 }
 
 const RESOLVERS = [
-  { source: 'Ali', endpoint: 'https://dns.alidns.com/resolve?name=', color: 'red' },
-  { source: 'Arashi', endpoint: 'https://ns.net.kg/dns-query?name=', color: 'blue' },
-  { source: 'Google', endpoint: 'https://dns.google/resolve?name=', color: 'green' }
+  { source: 'AliDNS', endpoint: 'https://dns.alidns.com/resolve?name=', color: 'red' },
+  { source: 'ArashiDNS', endpoint: 'https://ns.net.kg/dns-query?name=', color: 'blue' },
+  { source: 'GoogleDNS', endpoint: 'https://dns.google/resolve?name=', color: 'green' }
 ] as const satisfies ReadonlyArray<Resolver>
 
 type Source = (typeof RESOLVERS)[number]['source']
@@ -122,6 +122,9 @@ interface DnsAnswer {
       :base-color="SOURCE_COLOR[ipInfo.source!]"
     >
       {{ ipInfo.ip }}
+      <v-tooltip activator="parent" target="cursor" location="bottom start" offset="12 -16" color="#00bd7e">
+        {{ ipInfo.source ?? 'JsonIP' }}
+      </v-tooltip>
     </v-list-item>
   </v-list>
 </template>
@@ -133,6 +136,10 @@ interface DnsAnswer {
   margin-bottom: 1rem;
   background-color: @primary-color;
   color: white;
+
+  :deep(.v-field) {
+    overflow: hidden;
+  }
 
   .search-v-btn {
     display: inline-block;

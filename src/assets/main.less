@@ -2,7 +2,7 @@
   border-radius: 0.5rem !important;
 }
 
-a {
+a:not(.v-list-item) {
   padding: 0 0.3rem;
   text-decoration: none;
   color: @primary-color;
@@ -10,7 +10,7 @@ a {
 }
 
 @media (hover: hover) {
-  a:hover {
+  a:not(.v-list-item):hover {
     background-color: fade(@primary-color, 20);
   }
 }
